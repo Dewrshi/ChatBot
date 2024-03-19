@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        /* CSS for styling the chatbot container */
+        .chat-container {
+            background-color: #f0f0f0;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 300px;
+            height: 400px;
+            position: fixed;
+            bottom: 250px;
+            right: 750px;
+        }
+
+        /* CSS for styling the chat messages */
+        .chat-messages {
+            padding: 10px;
+            overflow-y: scroll;
+            height: 340px;
+            background-color: #ffffff;
+        }
+
+        /* CSS for styling the input box */
+        .chat-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        /* CSS for styling user and bot messages */
+        .user-message {
+            color: #4CAF50;
+        }
+
+        .bot-message {
+            color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message...">
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for handling chat functionality
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+
+        userInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage(userInput.value);
+                userInput.value = '';
+            }
+        });
+
+        function sendMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = 'You: ' + message;
+            messageDiv.classList.add('user-message'); // Add user message class
+            chatMessages.appendChild(messageDiv);
+
+            // Simulate bot response (you can replace this with actual chatbot logic)
+            setTimeout(function () {
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.textContent = 'Bot: ' + 'Hello! How can I assist you?';
+                botMessageDiv.classList.add('bot-message'); // Add bot message class
+                chatMessages.appendChild(botMessageDiv);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
